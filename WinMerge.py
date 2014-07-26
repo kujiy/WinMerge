@@ -1,9 +1,9 @@
 import sublime, sublime_plugin
 import os
 from subprocess import Popen
-import _winreg
+import winreg
 
-WINMERGE = _winreg.QueryValue(_winreg.HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe')
+WINMERGE = winreg.QueryValue(winreg.HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\WinMergeU.exe')
 
 if not WINMERGE:
 	if os.path.exists("%s\WinMerge\WinMergeU.exe" % os.environ['ProgramFiles(x86)']):
@@ -22,7 +22,7 @@ def recordActiveFile(f):
 class WinMergeCommand(sublime_plugin.ApplicationCommand):
 	def run(self):
 		cmd_line = '%s /e /ul /ur "%s" "%s"' % (WINMERGE, fileA, fileB)
-		print "WinMerge command: " + cmd_line
+		print("WinMerge command: " + cmd_line)
 		Popen(cmd_line)
 
 class WinMergeFileListener(sublime_plugin.EventListener):
