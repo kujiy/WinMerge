@@ -33,6 +33,9 @@ class WinMergeCommand(sublime_plugin.ApplicationCommand):
 	def run(self):
 		if (fileA == None) or (fileB == None):
 			getWindowFile()
+
+		showEmptyMessage()
+
 		cmd_line = '%s /e /ul /ur "%s" "%s"' % (WINMERGE, fileA, fileB)
 		print("WinMerge command: " + cmd_line)
 		Popen(cmd_line)
@@ -41,3 +44,12 @@ class WinMergeFileListener(sublime_plugin.EventListener):
 	def on_activated(self, view):
 		if view.file_name() != fileA:
 			recordActiveFile(view.file_name())
+
+def showEmptyMessage():
+	global fileA
+	global fileB
+	if (fileA == None) or (fileB == None):
+		msg = "WinMerge Sublime plugin Failed:\nYou need to open more than two files and save them with each specific name."
+		print(msg)
+		sublime.error_message(msg)
+		exit()
