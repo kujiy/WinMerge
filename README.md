@@ -1,3 +1,14 @@
+# The original repo has frozen.  
+  
+This is a folked repo. It fixed some problems on Sublime Text 3.  
+  
+I recommended you to use this repo.  
+> git clone https://github.com/kujiy/WinMerge.git
+  
+  ***
+    
+  
+    
 Description
 ===========
 [WinMerge](http://winmerge.org/) is a nice GUI file difference engine that is freely available for Windows. This package adds support to Sublime Text 2 for allowing you to diff the last 2 active views, even if they are in different Sublime windows.
